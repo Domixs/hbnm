@@ -1,0 +1,83 @@
+<STyle>
+    .upload-box {
+        border: 1px solid #ccc;
+        padding: 20px;
+        width: 500px;
+        margin: 0 auto;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    input[type="file"] {
+        margin-bottom: 20px;
+    }
+
+    #submit-button {
+        background-color: #008CBA;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #submit-button:hover {
+        background-color: #006080;
+    }
+
+    #thank-you-message {
+        display: none;
+        text-align: center;
+        margin-top: 20px;
+        color: green;
+        font-weight: bold;
+    }
+</STyle>
+<SCript>
+    function saveImage() {
+        let file = document.getElementById('imageUpload').files[0];
+
+        if (file) {
+            let reader = new FileReader();
+
+            reader.readAsDataURL(file);
+
+            reader.onload = function () {
+                let image = new Image();
+                image.src = reader.result;
+
+                // Here you can do whatever you want with the image, like save it to a database
+                // or download it to the user's device using the download attribute
+
+                // Example of downloading the image
+                let a = document.createElement('a');
+                a.href = reader.result;
+                a.download = 'image.png';
+                a.click();
+            }
+        }
+    }
+
+</SCript>
+<div class="upload-box">
+    <form action="#" method="post" enctype="multipart/form-data">
+        <label for="picture1">Upload Picture 1:</label>
+        <input type="file" name="picture1" id="picture1">
+
+        <label for="picture2">Upload Picture 2:</label>
+        <input type="file" name="picture2" id="picture2">
+
+        <input type="submit" value="Submit" id="submit-button">
+    </form>
+
+    <div id="thank-you-message">
+        Thank you for submitting!
+    </div>
+</div>
